@@ -1,7 +1,6 @@
 import fetch from "node-fetch";
 import { parse } from "node-html-parser";
 let lastData = {text: ''};
-
 async function fetchText() {
   try {
     
@@ -28,9 +27,8 @@ async function fetchText() {
  })();
 
 async function webhook(dataForSend) {
-  const webhookURL =
-    "https://chat.googleapis.com/v1/spaces/AAAAQlsmx_o/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=3waUBCO63X5elY8PpUFVGRI1u8YbsWCRNe5nSkM5EPo";
-
+  console.log(process.env.CHAT_URL);
+  const webhookURL = `${process.env.CHAT_URL}`
   let resp;
   fetch(webhookURL, {
     method: "POST",

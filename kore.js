@@ -28,8 +28,7 @@ async function fetchText() {
    })();
 
 async function webhook(dataForSend) {
-  const webhookURL =
-    "https://chat.googleapis.com/v1/spaces/AAAAQlsmx_o/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=3waUBCO63X5elY8PpUFVGRI1u8YbsWCRNe5nSkM5EPo";
+  const webhookURL = `${process.env.CHAT_URL}`
 
   let resp;
   fetch(webhookURL, {
