@@ -28,7 +28,7 @@ async function fetchText() {
    })();
 
 async function webhook(dataForSend) {
-  const webhookURL = `${process.env.CHAT_URL}`
+  const webhookURL = `${process.env.KORE_URL}`
 
   let resp;
   fetch(webhookURL, {

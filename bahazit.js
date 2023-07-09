@@ -5,17 +5,15 @@ let lastData = {text: ''};
 async function fetchText() {
   try {
     
-    const page = await fetch("https://www.jdn.co.il/flash");
+    const page = await fetch("https://www.bahazit.co.il/mivzakim/");
     const text = await page.text();
     const root = parse(text);
-    const fleshs = root.querySelectorAll(".ue_post_blocks_title a").flatMap((e) => {
-      return { text: e.innerText + ' (JDN) \r ' + e.attributes['href'] };
-    });
-    if (lastData.text != fleshs[0].text) {
-      console.log(lastData ,fleshs[0]);
-      webhook(JSON.stringify(fleshs[0]));
+    const fleshs = { text: root.querySelector(".mivzak .mivzak_contant .contant").innerHTML + (root.querySelector(".mivzak .mivzak_contant .button_bahazit").attributes['href'] ?  ' \r ' + root.querySelector(".mivzak .mivzak_contant .button_bahazit").attributes['href'] : '')}
+    if (lastData.text != fleshs.text) {
+      console.log(lastData ,fleshs);
+      webhook(JSON.stringify(fleshs));
     }
-    lastData = fleshs[0];
+    lastData = fleshs;
   } catch (error) {
     // throw error;
   }
@@ -28,7 +26,7 @@ async function fetchText() {
 })();
 
 async function webhook(dataForSend) {
-  const webhookURL = `${process.env.JDN_URL}`
+  const webhookURL = `${process.env.BAHAZIT_URL}`
 
   let resp;
   fetch(webhookURL, {
