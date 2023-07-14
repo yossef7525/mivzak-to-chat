@@ -8,7 +8,7 @@ async function fetchText() {
     const text = await page.text();
     const root = parse(text);
     const fleshs = root.querySelectorAll("article .elementor-widget-heading .elementor-heading-title.elementor-size-default a").flatMap((e) => {
-      return { text: e.innerText + ' (המחדש) \r ' + e.attributes['href'] };
+      return { text: e.innerText.replaceAll('&quot;', "''") + ' (המחדש) \r ' + e.attributes['href'] };
     });
     if (lastData.text != fleshs[1].text) {
       console.log(lastData ,fleshs[1]);

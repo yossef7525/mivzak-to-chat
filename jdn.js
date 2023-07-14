@@ -9,7 +9,7 @@ async function fetchText() {
     const text = await page.text();
     const root = parse(text);
     const fleshs = root.querySelectorAll(".ue_post_blocks_title a").flatMap((e) => {
-      return { text: e.innerText + ' (JDN) \r ' + e.attributes['href'] };
+      return { text: e.innerText.replaceAll('&quot;', "''") + ' (JDN) \r ' + e.attributes['href'] };
     });
     if (lastData.text != fleshs[0].text) {
       console.log(lastData ,fleshs[0]);

@@ -8,7 +8,7 @@ async function fetchText() {
     const page = await fetch("https://www.bahazit.co.il/mivzakim/");
     const text = await page.text();
     const root = parse(text);
-    const fleshs = { text: root.querySelector(".mivzak .mivzak_contant .contant").innerHTML + (root.querySelector(".mivzak .mivzak_contant .button_bahazit").attributes['href'] ?  ' \r ' + root.querySelector(".mivzak .mivzak_contant .button_bahazit").attributes['href'] : '')}
+    const fleshs = { text: root.querySelector(".mivzak .mivzak_contant .contant").innerText.replaceAll('&quot;', "''") + (root.querySelector(".mivzak .mivzak_contant .button_bahazit").attributes['href'] ?  ' \r ' + root.querySelector(".mivzak .mivzak_contant .button_bahazit").attributes['href'] : '')}
     if (lastData.text != fleshs.text) {
       console.log(lastData ,fleshs);
       webhook(JSON.stringify(fleshs));

@@ -9,7 +9,7 @@ async function fetchText() {
     const text = await page.text();
     const root = parse(text);
     const fleshs = root.querySelectorAll(".flash").flatMap((e) => {
-      return { text: e.innerText + ' (כל רגע)' };
+      return { text: e.innerText.replaceAll('&quot;', "''") + ' (כל רגע)' };
     });
     if (lastData.text != fleshs[0].text) {
       console.log(lastData ,fleshs[0]);
