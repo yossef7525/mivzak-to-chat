@@ -36,7 +36,7 @@ setInterval(() => {
     .catch((err) => {
       console.log(err);
     });
-}, 1500);
+}, 500);
 
 if (DEMO) {
     const jsonData = {
