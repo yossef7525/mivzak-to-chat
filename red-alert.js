@@ -19,7 +19,7 @@ setInterval(() => {
         
       if (res.data !== "" && res.data.constructor === Object) {
         let json = JSON.parse(JSON.stringify(res.data));
-
+// console.log(res.data);
         if (json.id != prevId) {
           prevId = json.id;
 
@@ -28,7 +28,8 @@ setInterval(() => {
           for (let i = 0; i < json.data.length; i++) {
             locations += json.data[i] + " ";
           }
-          const text = { text: `🚨🚀🚨🚀🚨\n ${json.title} \n ביישובים: ${locations},\n ${jsonData.desc}\n 🚨🚀🚨🚀🚨` };
+          const text = { text: `🚨 *${json.title}* ביישובים: ${locations}` };
+          // console.log(text);
           webhook(JSON.stringify(text))
         }
       }
